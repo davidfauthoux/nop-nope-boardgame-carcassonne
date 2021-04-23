@@ -16,7 +16,7 @@ var asHtml = function(d) {
 	return d[0].outerHTML;
 };
 
-/*
+/*%%
 var taskResult = {};
 var tasks = [];
 var taskRunning = false;
