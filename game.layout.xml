@@ -1,0 +1,46 @@
+<layout>
+	<inside>
+		<vertical>
+			<pool>
+				<name>setup</name>
+				<drop>setup_tiles_cathedral</drop>
+				<drop>setup_tiles_architect</drop>
+				<drop>setup_tiles_river</drop>
+				<drop>setup_</drop>
+			</pool>
+			<horizontal name="player-banks"/>
+			<packed>
+				<grid>
+					<name>grid</name>
+					<auto>true</auto>
+					<type>4</type>
+				</grid>
+			</packed>
+		</vertical>
+	</inside>
+	<south>
+		<vertical>
+			<horizontal name="player-sides">
+				<pool>
+					<name>global</name>
+					<drop count="1">tileback</drop>
+					<drop count="1">clickit</drop>
+				</pool>
+			</horizontal>
+			<track direction="horizontal">
+				<name>scores</name>
+				<size>50</size>
+				<limit>25</limit>
+				<color level="5">#eaeaea</color>
+				<color level="10">#eaeaea</color>
+				<color level="15">#eaeaea</color>
+				<color level="20">#eaeaea</color>
+				<color level="25">#eaeaea</color>
+				<color level="30">#eaeaea</color>
+				<color level="35">#eaeaea</color>
+				<color level="40">#eaeaea</color>
+				<color level="45">#eaeaea</color>
+			</track>
+		</vertical>
+	</south>
+</layout>

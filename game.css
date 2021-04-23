@@ -1,0 +1,185 @@
+@import url("https://fonts.googleapis.com/css2?family=Overpass+Mono");
+
+.cc-background {
+	width: 82px;
+	height: 82px;
+	background-size: 82px 82px;
+	border-radius: 5px;
+	overflow: hidden;
+}
+.cc-tile {
+	position: relative;
+}
+.cc-spot > .spot {
+	width: 100%;
+	height: 100%;
+}
+.cc-spot {
+	position: absolute;
+	width: 27px;
+	height: 27px;
+}
+.cc-spot-0,
+.cc-spot-1,
+.cc-spot-3,
+.cc-spot-4,
+.cc-spot-6,
+.cc-spot-7 {
+	margin-right: 0px;
+}
+.cc-spot-0,
+.cc-spot-1,
+.cc-spot-2,
+.cc-spot-3,
+.cc-spot-4,
+.cc-spot-5 {
+	margin-bottom: 0px;
+}
+
+.cc-spot-0,
+.cc-spot-1,
+.cc-spot-2 {
+	top: 0;
+}
+.cc-spot-3,
+.cc-spot-4,
+.cc-spot-5 {
+	top: 27px;
+}
+.cc-spot-6,
+.cc-spot-7,
+.cc-spot-8 {
+	top: 54px;
+}
+
+.cc-spot-0,
+.cc-spot-3,
+.cc-spot-6 {
+	left: 0;
+}
+.cc-spot-1,
+.cc-spot-4,
+.cc-spot-7 {
+	left: 27px;
+}
+.cc-spot-2,
+.cc-spot-5,
+.cc-spot-8 {
+	left: 54px;
+}
+
+.item.item-tile,
+.item.item-tile.hoverable.hover,
+.item.item-tile.hoverable:hover,
+.item.item-tile.friendHover,
+.item.item-tile.selected,
+.item.item-tile.friendSelected {
+	border: none;
+}
+.item.item-tile.hoverable.hover > div > div > .content > .cc-background,
+.item.item-tile.hoverable:hover > div > div > .content > .cc-background,
+.item.item-tile.friendHover > div > div > .content > .cc-background,
+.item.item-tile.selected > div > div > .content > .cc-background,
+.item.item-tile.friendSelected > div > div > .content > .cc-background {
+	opacity: 0.75;
+}
+
+/*
+.count {
+	z-index: 1;
+}
+.gameOverlay, .administration {
+	z-index: 2;
+}
+*/
+
+.gridCellContent {
+	display: none;
+}
+
+.pool-bank-_ > div > .spot {
+	border-radius: 5px;
+	margin: 2px;
+	padding: 2px;
+}
+
+.item span.cc-setup {
+	background: #eed3ab;
+	color: #99410a;
+	width: 100px;
+	word-spacing: 100px;
+	padding: 6px 12px;
+}
+
+.pool.pool-setup > div > .spot {
+	min-width: 0;
+	min-height: 0;
+	border: none;
+}
+
+.pool > div > .spot > .item-tile {
+	margin: 2px;
+}
+.pool > div > .spot > .item-tileback {
+	padding: 2px;
+}
+
+.track > div > div > .title {
+	font-family: "Overpass Mono", monospace;
+	font-size: 10px;
+	color: #888;
+	text-align: center;
+	margin: 0;
+}
+.track > div > div > .spot, .track > div > div > div > .spot {
+	border-color: #fff;
+	background: #fafafa;
+}
+
+.item-incscore1 > div > div > span.content,
+.item-incscore4 > div > div > span.content,
+.item-incscore10 > div > div > span.content {
+    background: #ececec;
+    color: #666;
+}
+
+/*
+.colored_g {
+	border: solid 1px green;
+	background: rgba(0, 255, 0, 0.5);
+}
+.colored_c {
+	border: solid 1px black;
+	background: rgba(0, 0, 0, 0.5);
+}
+.colored_r {
+	border: solid 1px red;
+	background: rgba(255, 0, 0, 0.5);
+}
+.colored_w {
+	border: solid 1px blue;
+	background: rgba(0, 0, 255, 0.5);
+}
+*/
+
+.item.item-tile.state-valid-invalid::after {
+	content: "";
+	position: absolute;
+	width: 70px;
+	height: 70px;
+	border-radius: 5px;
+	border: dashed 4px #ee0d3a;
+}
+
+.pool-side-_ > div > .spot {
+	padding: 5px;
+	border-radius: 5px;
+	margin: 0 5px;
+}
+
+.comment {
+	font-size: 9px;
+	color: #333;
+	width: 100px;
+	text-align: center;
+}
