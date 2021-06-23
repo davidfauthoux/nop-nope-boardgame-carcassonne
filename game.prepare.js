@@ -1,4 +1,136 @@
-console.log(res);
+
+ class Utils {
+	constructor() {}
+
+	/**
+	 * Give a random number between 0 included and n excluded
+	 * @param n upper bound
+	 * @returns {number}
+	 */
+	static random(n) {
+		return Math.floor(Math.random() * n);
+	}
+
+	/**
+	 * Copy an object in another one object or an array in another array
+	 * @param o object cloned
+	 * @returns {{}|[]}
+	 */
+	static clone(o) {
+		if (Array.isArray(o)) {
+			let a = [];
+			o.forEach((element) => a.push(element));
+			return a;
+		} else {
+			let c = {};
+			for (const [key, value] of Object.entries(o)) {
+				c[key] = value;
+			}
+			return c;
+		}
+	}
+
+	/**
+	 * Repeat a callback function with an int passed as argument
+	 * @param from, become "to" when step < 0
+	 * @param to,
+	 * @param step, step of the loop
+	 * @param callback, function used by the loop
+	 */
+	static loop(from, to, step, callback) {
+		if (step < 0) {
+			if (to - from > 0) {
+				throw "'From' is lower than 'to' and the step is negative";
+			}
+			for (let i = from; i > to; i += step) {
+				callback(i);
+			}
+		} else {
+			if (to - from < 0) {
+				throw "'From' is upper than 'to' and the step is negative";
+			}
+			for (let i = from; i < to; i += step) {
+				callback(i);
+			}
+		}
+	}
+
+	/**
+	 * Iterate all the elements in an Array or an Object
+	 * and give it to the callback function as argument
+	 * @param o, an Array or an object which will be iterate
+	 * @param callback
+	 */
+	static each(o, callback) {
+		o = Utils.clone(o);
+		if (Array.isArray(o)) {
+			o.forEach((element, index) => {
+				callback(element, index);
+			});
+		} else {
+			for (const [key, element] of Object.entries(o)) {
+				// iterate a variable ?
+				callback(element, key);
+			}
+		}
+	}
+
+	/**
+	 * Remove the first value kv of an Array or an Object by its key
+	 * @param a, Array or an Object
+	 * @param kv, the value or the key to remove
+	 */
+	static remove(a, kv) {
+		if (Array.isArray(a)) {
+			const i = a.indexOf(kv);
+			if (i === -1) {
+				return;
+			}
+			a.splice(i, 1);
+		} else {
+			delete a[kv];
+		}
+	}
+
+	/**
+	 *  Give the number of elements of an Array or an Object
+	 * @param o, Array or Object to count the number of elements
+	 * @returns {number|*}
+	 */
+	static size(o) {
+		if (Array.isArray(o)) {
+			return o.length;
+		} else {
+			return Object.keys(o).length;
+		}
+	}
+
+	/**
+	 * Say if the Array or the Object is empty or not
+	 * @param o, Array or Object
+	 * @returns {boolean}
+	 */
+	static empty(o) {
+		return Utils.size(o) === 0;
+	}
+
+	/**
+	 * Search if the Array contains the value or if the Object contains the key
+	 * @param o
+	 * @param kv
+	 * @returns {boolean}
+	 */
+	static contains(o, kv) {
+		if (Array.isArray(o)) {
+			return (o.indexOf(kv) !== -1);
+		} else {
+			return !(o[kv] === undefined);
+		}
+	}
+}
+
+
+//console.log(res);
 var declarations = $($.parseXML(res["../game.declare.xml"]));
 
 var getContent = function(className) {
