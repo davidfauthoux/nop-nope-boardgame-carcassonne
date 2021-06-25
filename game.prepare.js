@@ -409,9 +409,9 @@ global.setupTiles = function(pools, expansion) {
 
 global.findExpansions = function(pools) {
 	let expansions = [];
-	let a = pools.get("global").items()
-	for (const i in a) {
-		let t = a[i].is("tile");
+	let arr = pools.get("global").items()
+	for (const i in arr) {
+		let t = arr[i].is("tile");
 		if (t !== undefined) {
 			let expansion = t.split(/\_/g)[0];
 			if (!Utils.contains(expansions, expansion)) {
@@ -448,14 +448,14 @@ global.setupStartingTile = function(pools, grids) {
 };
 
 global.currentTile = function(here) {
-	var foundTile = null;
-	let a = here.items();
-	for (const i in a) {
+	let foundTile = null;
+	let arr = here.items();
+	for (const i in arr) {
 		if (foundTile !== null) {
 			return;
 		}
-		if (a[i].is("tile") !== undefined) {
-			foundTile = a[i];
+		if (arr[i].is("tile") !== undefined) {
+			foundTile = arr[i];
 		}
 	}
 	// here.items().each(function(i) {
@@ -470,21 +470,21 @@ global.currentTile = function(here) {
 };
 
 global.drawTile = function(pools, here) {
-	var foundTile = global.currentTile(here);
+	let foundTile = global.currentTile(here);
 	if (foundTile !== null) {
 		return null;
 	}
-	var allTiles = [];
-	var riverTiles = [];
-	let a = pools.get("global").items();
-	for (const i in a) {
-		var t = a[i].is("tile");
+	let allTiles = [];
+	let riverTiles = [];
+	let arr = pools.get("global").items();
+	for (const i in arr) {
+		let t = arr[i].is("tile");
 		if (t !== undefined) {
-			var expansion = t.split(/\_/g)[0];
+			let expansion = t.split(/\_/g)[0];
 			if (expansion === "river") {
-				riverTiles.push(a[i]);
+				riverTiles.push(arr[i]);
 			} else {
-				allTiles.push(a[i]);
+				allTiles.push(arr[i]);
 			}
 		}
 	}
@@ -553,10 +553,10 @@ global.createPlayers = function(pools, tracks, count) {
 };
 
 global.destroySetup = function(here) {
-	const a = here.items()
-	for (const i in a) {
-		if (a[i].kind.startsWith("setup_")) {
-			here.destroy(a[i].kind);
+	const arr = here.items()
+	for (const i in arr) {
+		if (arr[i].kind.startsWith("setup_")) {
+			here.destroy(arr[i].kind);
 		}
 	}
 	// here.items().each(function(i) {
@@ -592,11 +592,11 @@ global.setTileRotation = function(hover, spot, newAngle) {
 
 	Utils.each([ 0, 90, 180, 270 ], function(a) {
 		Utils.loop(0, 9, 1, function(i) {
-			var from = spot(hover.kind + "-" + a + "-" + i);
-			var to = spot(hover.kind + "-" + newAngle + "-" + i);
-			let a = from.items()
-			for (const item in a) {
-				from.move(a[item].kind, a[item].count(), to);
+			let from = spot(hover.kind + "-" + a + "-" + i);
+			let to = spot(hover.kind + "-" + newAngle + "-" + i);
+			let arr = from.items()
+			for (const item in arr) {
+				from.move(arr[item].kind, arr[item].count(), to);
 			}
 			// from.items().each(function(item) {
 			// 	from.move(item.kind, item.count(), to);
@@ -681,11 +681,11 @@ global.checkValid = function(here, hover, grids) {
 	}
 
 	var check = function(cell, tilePos, cellPos) {
-		var t = null;
-		let a = cell.items();
-		for (const i in a) {
-			if (a[i].is("tile") !== undefined) {
-				t = i;
+		let t = null;
+		let arr = cell.items();
+		for (const i in arr) {
+			if (arr[i].is("tile") !== undefined) {
+				t = arr[i];
 			}
 		}
 		// cell.items().each(function(i) {
