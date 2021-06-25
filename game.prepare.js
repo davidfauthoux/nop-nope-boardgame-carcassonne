@@ -408,16 +408,26 @@ global.setupTiles = function(pools, expansion) {
 };
 
 global.findExpansions = function(pools) {
-	var expansions = [];
-	pools.get("global").items().each(function(i) {
-		var t = i.is("tile");
+	let expansions = [];
+	let a = pools.get("global").items()
+	for (const i in a) {
+		let t = a[i].is("tile");
 		if (t !== undefined) {
-			var expansion = t.split(/\_/g)[0];
+			let expansion = t.split(/\_/g)[0];
 			if (!Utils.contains(expansions, expansion)) {
 				expansions.push(expansion);
 			}
 		}
-	});
+	}
+	// pools.get("global").items().each(function(i) {
+	// 	var t = i.is("tile");
+	// 	if (t !== undefined) {
+	// 		var expansion = t.split(/\_/g)[0];
+	// 		if (!Utils.contains(expansions, expansion)) {
+	// 			expansions.push(expansion);
+	// 		}
+	// 	}
+	// });
 	return expansions;
 };
 
@@ -439,14 +449,23 @@ global.setupStartingTile = function(pools, grids) {
 
 global.currentTile = function(here) {
 	var foundTile = null;
-	here.items().each(function(i) {
+	let a = here.items();
+	for (const i in a) {
 		if (foundTile !== null) {
 			return;
 		}
-		if (i.is("tile") !== undefined) {
-			foundTile = i;
+		if (a[i].is("tile") !== undefined) {
+			foundTile = a[i];
 		}
-	});
+	}
+	// here.items().each(function(i) {
+	// 	if (foundTile !== null) {
+	// 		return;
+	// 	}
+	// 	if (i.is("tile") !== undefined) {
+	// 		foundTile = i;
+	// 	}
+	// });
 	return foundTile;
 };
 
@@ -457,17 +476,29 @@ global.drawTile = function(pools, here) {
 	}
 	var allTiles = [];
 	var riverTiles = [];
-	pools.get("global").items().each(function(i) {
-		var t = i.is("tile");
+	let a = pools.get("global").items();
+	for (const i in a) {
+		var t = a[i].is("tile");
 		if (t !== undefined) {
 			var expansion = t.split(/\_/g)[0];
 			if (expansion === "river") {
-				riverTiles.push(i);
+				riverTiles.push(a[i]);
 			} else {
-				allTiles.push(i);
+				allTiles.push(a[i]);
 			}
 		}
-	});
+	}
+	// pools.get("global").items().each(function(i) {
+	// 	var t = i.is("tile");
+	// 	if (t !== undefined) {
+	// 		var expansion = t.split(/\_/g)[0];
+	// 		if (expansion === "river") {
+	// 			riverTiles.push(i);
+	// 		} else {
+	// 			allTiles.push(i);
+	// 		}
+	// 	}
+	// });
 	if (riverTiles.length > 0) {
 		allTiles = riverTiles;
 	}
@@ -522,11 +553,17 @@ global.createPlayers = function(pools, tracks, count) {
 };
 
 global.destroySetup = function(here) {
-	here.items().each(function(i) {
-		if (i.kind.startsWith("setup_")) {
-			here.destroy(i.kind);
+	const a = here.items()
+	for (const i in a) {
+		if (a[i].kind.startsWith("setup_")) {
+			here.destroy(a[i].kind);
 		}
-	});
+	}
+	// here.items().each(function(i) {
+	// 	if (i.kind.startsWith("setup_")) {
+	// 		here.destroy(i.kind);
+	// 	}
+	// });
 };
 
 global.incScore = function(here, tracks, count, play, log) {
@@ -557,9 +594,13 @@ global.setTileRotation = function(hover, spot, newAngle) {
 		Utils.loop(0, 9, 1, function(i) {
 			var from = spot(hover.kind + "-" + a + "-" + i);
 			var to = spot(hover.kind + "-" + newAngle + "-" + i);
-			from.items().each(function(item) {
-				from.move(item.kind, item.count(), to);
-			});
+			let a = from.items()
+			for (const item in a) {
+				from.move(a[item].kind, a[item].count(), to);
+			}
+			// from.items().each(function(item) {
+			// 	from.move(item.kind, item.count(), to);
+			// });
 		});
 	});
 };
@@ -641,11 +682,17 @@ global.checkValid = function(here, hover, grids) {
 
 	var check = function(cell, tilePos, cellPos) {
 		var t = null;
-		cell.items().each(function(i) {
-			if (i.is("tile") !== undefined) {
+		let a = cell.items();
+		for (const i in a) {
+			if (a[i].is("tile") !== undefined) {
 				t = i;
 			}
-		});
+		}
+		// cell.items().each(function(i) {
+		// 	if (i.is("tile") !== undefined) {
+		// 		t = i;
+		// 	}
+		// });
 		if (t !== null) {
 			var d = def(t);
 			if (d === undefined) {
