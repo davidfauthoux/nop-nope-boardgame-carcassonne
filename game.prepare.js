@@ -452,7 +452,7 @@ global.currentTile = function(here) {
 	let arr = here.items();
 	for (const i in arr) {
 		if (foundTile !== null) {
-			return;
+			return foundTile;
 		}
 		if (arr[i].is("tile") !== undefined) {
 			foundTile = arr[i];
