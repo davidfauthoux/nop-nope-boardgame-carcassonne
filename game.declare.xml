@@ -364,11 +364,17 @@
 //					foundBank.move("playing", 1, nextBank);
 					foundBank.destroy("pass-player" + foundBankPlayer, 1);
 					nextBank.drop("pass-player" + nextBankPlayer, 1);
-					nextBank.items().each(function(i) {
-						if (i.is("tile") && (i.look("face") === undefined)) {
-							global.faceUpTile(i, spot);
+					let arr = nextBank.items();
+					for (const i in arr){
+						if (arr[i].is("tile") && (arr[i].look("face") === undefined)) {
+							global.faceUpTile(arr[i], spot);
 						}
-					});
+					}
+<!--					nextBank.items().each(function(i) {-->
+<!--						if (i.is("tile") && (i.look("face") === undefined)) {-->
+<!--							global.faceUpTile(i, spot);-->
+<!--						}-->
+<!--					});-->
 				}
 
 				play("long");
@@ -388,11 +394,17 @@
 							each(allPlayers, function(player) {
 								p.destroy("pass-player" + player, 1);
 							});
-							p.items().each(function(i) {
-								if (i.is("tile")) {
-									global.faceDownTile(i, spot);
+							let arr = p.items();
+							for (const i in arr){
+								if (arr[i].is("tile")) {
+									global.faceDownTile(arr[i], spot);
 								}
-							});
+							}
+<!--							p.items().each(function(i) {-->
+<!--								if (i.is("tile")) {-->
+<!--									global.faceDownTile(i, spot);-->
+<!--								}-->
+<!--							});-->
 							if (droppedPlayer === bankPlayer) {
 								p.drop("pass-player" + bankPlayer, 1);
 							}
@@ -565,12 +577,19 @@
 					var playerColor = p.substring(p.indexOf('-') + 1);
 					var foundBank = null;
 					pools.each(function(p) {
-						p.items().each(function(i) {
-							var color = i.is("bank-pin");
+						let arr = p.items();
+						for (const i in arr){
+							var color = arr[i].is("bank-pin");
 							if (color === playerColor) {
 								foundBank = p;
 							}
-						});
+						}
+<!--						p.items().each(function(i) {-->
+<!--							var color = i.is("bank-pin");-->
+<!--							if (color === playerColor) {-->
+<!--								foundBank = p;-->
+<!--							}-->
+<!--						});-->
 					});
 					if (foundBank !== null) {
 						here.move(hover.kind, 1, foundBank);
