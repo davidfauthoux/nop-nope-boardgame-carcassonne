@@ -1,0 +1,36 @@
+<item>
+    <kind>meepleback</kind>
+    <content>
+        <span>meepleback</span>
+    </content>
+    <trigger>drop:meeple</trigger>
+    <trigger>drop:bigmeeple</trigger>
+    <script>
+        <![CDATA[
+			if (here.location === from.location) {
+				if ((here.is("tile") === undefined) && (here.is("grid") === undefined)) {
+					return;
+				}
+				var p = hover.is("meeple");
+				if (p !== undefined) {
+					var playerColor = p.substring(p.indexOf('-') + 1);
+					var foundBank = null;
+					pools.each(function(p) {
+						p.items().each(function(i) {
+							var color = i.is("bank-pin");
+							if (color === playerColor) {
+								foundBank = p;
+							}
+						});
+					});
+					if (foundBank !== null) {
+						here.move(hover.kind, 1, foundBank);
+					}
+				}
+			}
+		]]>
+    </script>
+    <property>
+        <key>hidden</key>
+    </property>
+</item>

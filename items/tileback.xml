@@ -1,0 +1,9 @@
+<item>
+    <kind>tileback</kind>
+    <content>
+        <div class="cc-background" style="background-image: url('../res/back.png');"></div>
+    </content>
+    <property>
+        <key>random</key>
+    </property>
+</item>

@@ -1,0 +1,45 @@
+<item>
+    <content>
+        <span>fliptile</span>
+    </content>
+    <trigger>drop:tile</trigger>
+    <script>
+        <![CDATA[
+			if (here.location.startsWith("grid-")) {
+				if (here.location === from.location) {
+					global.rotateTile(hover, spot);
+				} else {
+					global.faceUpTile(hover, spot);
+				}
+				//TODO it18n
+				global.checkValid(here, hover, grids);
+				play("medium");
+			} else {
+				var player = here.is("pool-bank");
+				if (player !== undefined) {
+					if (here.location === from.location) {
+						if (!here.live()) {
+							here.move("live", 1, here);
+						}
+						global.rotateTile(hover, spot); // Rotate, including the meeples on it
+						if (!here.find("pass-player" + player).exists()) {
+							global.privateFaceUpTile(hover, spot, nop);
+						}
+						play("medium");
+					} else {
+						if (here.find("pass-player" + player).exists()) {
+							global.faceUpTile(hover, spot);
+						} else {
+							if (here.live()) {
+								global.privateFaceUpTile(hover, spot, nop);
+							} else {
+								global.faceDownTile(hover, spot);
+							}
+						}
+						play("medium");
+					}
+				}
+			}
+		]]>
+    </script>
+</item>

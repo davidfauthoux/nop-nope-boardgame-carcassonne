@@ -1,0 +1,12 @@
+<item>
+    <kind>incscore4</kind>
+    <content>
+        <span>+4</span>
+    </content>
+    <trigger>drop:incscore4</trigger>
+    <script>
+        <![CDATA[
+			global.incScore(here, tracks, 4, play, log);
+		]]>
+    </script>
+</item>

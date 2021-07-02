@@ -1,0 +1,11 @@
+<item>
+    <content>
+        <span>Duplicate</span>
+    </content>
+    <trigger>key:+</trigger>
+    <script>
+        <![CDATA[
+			here.drop(hover.kind, 1);
+		]]>
+    </script>
+</item>

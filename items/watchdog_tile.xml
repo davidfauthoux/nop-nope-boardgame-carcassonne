@@ -1,0 +1,29 @@
+<item>
+    <kind>watchdog_tile</kind>
+    <trigger>watchdog:tile</trigger>
+    <script>
+        <![CDATA[
+			/* No! or it will not move when the grid is extended
+			if (
+				(
+					(_.action === "move")
+					||
+					((_.action === "paint") && (hover.look("face") !== undefined))
+				)
+				&&
+				(hover.is("tile").split(/\-/g)[0].split(/\_/g)[1] === "000")
+			) {
+				throw "starting tile";
+			}
+			*/
+
+			if ((_.action === "move") && (from.location === "pool-global") && (here.is("grid") !== undefined)) {
+				throw "tile draw";
+			}
+
+			if (here.is("tile") !== undefined) {
+				throw "tile in tile";
+			}
+		]]>
+    </script>
+</item>
