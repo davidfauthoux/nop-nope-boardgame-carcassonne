@@ -1,0 +1,13 @@
+<item>
+    <kind>setup_tiles_architect</kind>
+    <content>
+        <span class="cc-setup">Add Architect expansion</span>
+    </content>
+    <trigger>drop:setup_tiles_architect</trigger>
+    <script>
+        <![CDATA[
+			here.destroy(hover.kind);
+			global.setupTiles(pools, "architect");
+		]]>
+    </script>
+</item>

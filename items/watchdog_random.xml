@@ -1,0 +1,11 @@
+<item>
+    <kind>watchdog_random</kind>
+    <trigger>watchdog:tileback</trigger>
+    <script>
+        <![CDATA[
+			if (here.location !== "pool-global") {
+				throw "random";
+			}
+		]]>
+    </script>
+</item>

@@ -1,0 +1,18 @@
+<item>
+    <content>
+        <span>switchaudio</span>
+    </content>
+    <trigger>drop:audio</trigger>
+    <script>
+        <![CDATA[
+			if (!here.live()) {
+				return;
+			}
+			if (hover.live()) {
+				here.destroy("video", 1);
+			} else {
+				here.drop("video", 1);
+			}
+		]]>
+    </script>
+</item>

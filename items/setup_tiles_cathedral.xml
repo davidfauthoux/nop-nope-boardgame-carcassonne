@@ -1,0 +1,14 @@
+<item>
+    <kind>setup_tiles_cathedral</kind>
+    <content>
+        <span class="cc-setup">Add Cathedral expansion</span>
+    </content>
+    <trigger>drop:setup_tiles_cathedral</trigger>
+    <script>
+        <![CDATA[
+
+			here.destroy(hover.kind);
+			global.setupTiles(pools, "cathedral");
+		]]>
+    </script>
+</item>

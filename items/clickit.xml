@@ -1,0 +1,40 @@
+<item>
+    <kind>clickit</kind>
+    <content>
+        <span>clickit</span>
+    </content>
+    <trigger>drop</trigger>
+    <script>
+        <![CDATA[
+			if (hover.kind.startsWith("resource")) {
+				here.drop(hover.kind, 1);
+				play("short");
+			} else if (here.location === "pool-global") {
+				var foundBank = null;
+				pools.each(function(p) {
+					var bankPlayer = p.is("pool-bank");
+					var pass = p.find("pass-player" + bankPlayer);
+					if (!pass.exists()) {
+						return;
+					}
+
+					foundBank = p;
+				});
+				if (foundBank !== null) {
+					var newTile = global.drawTile(pools, foundBank);
+					if (newTile === null) {
+						log("You cannot draw if you still have a tile to play");
+						return;
+					}
+					if (newTile !== undefined) {
+						global.faceUpTile(newTile, spot);
+						play("medium");
+					}
+				}
+			}
+		]]>
+    </script>
+    <property>
+        <key>hidden</key>
+    </property>
+</item>

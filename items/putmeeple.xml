@@ -1,0 +1,11 @@
+<item>
+    <content>
+        <span>putmeeple</span>
+    </content>
+    <trigger>drop:meeple</trigger>
+    <script>
+        <![CDATA[
+			play("medium");
+		]]>
+    </script>
+</item>

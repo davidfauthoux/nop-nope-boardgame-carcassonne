@@ -1,0 +1,9 @@
+<item>
+    <kind>side-pin</kind>
+    <modifier>
+        <key>border</key>
+    </modifier>
+    <property>
+        <key>hidden</key>
+    </property>
+</item>
