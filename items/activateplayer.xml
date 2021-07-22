@@ -1,0 +1,18 @@
+<item>
+    <content>
+        <span>activateplayer</span>
+    </content>
+    <trigger>drop:live</trigger>
+    <script>
+        <![CDATA[
+			var player = here.is("pool-bank");
+			if (player !== undefined) {
+				var foundTile = global.currentTile(here);
+				if (foundTile !== null) {
+					global.setTileRotation(foundTile, spot, 0); // Reset rotation
+					global.privateFaceUpTile(foundTile, spot, nop);
+				}
+			}
+		]]>
+    </script>
+</item>

@@ -1,0 +1,11 @@
+<item>
+    <kind>watchdog_audio</kind>
+    <trigger>watchdog:audio</trigger>
+    <script>
+        <![CDATA[
+			if ((_.action !== "destroy") && !here.live() && !hover.live()) {
+				throw "!live";
+			}
+		]]>
+    </script>
+</item>

@@ -1,0 +1,16 @@
+<item>
+    <kind>setup_3_players</kind>
+    <content>
+        <span class="cc-setup">3 players</span>
+    </content>
+    <trigger>drop:setup_3_players</trigger>
+    <script>
+        <![CDATA[
+			global.destroySetup(here);
+			global.createPlayers(pools, tracks, 3);
+			global.setupStartingTile(pools, grids);
+
+			mark();
+		]]>
+    </script>
+</item>

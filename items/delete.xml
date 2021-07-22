@@ -1,0 +1,11 @@
+<item>
+    <content>
+        <span>Delete</span>
+    </content>
+    <trigger>key:-</trigger>
+    <script>
+        <![CDATA[
+			here.destroy(hover.kind, 1);
+		]]>
+    </script>
+</item>

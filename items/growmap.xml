@@ -1,0 +1,13 @@
+<item>
+    <content>
+        <span>growmap</span>
+    </content>
+    <trigger>drop:tile</trigger>
+    <script>
+        <![CDATA[
+			if (here.is("grid") !== undefined) {
+				here.around();
+			}
+		]]>
+    </script>
+</item>

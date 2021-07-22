@@ -408,16 +408,26 @@ global.setupTiles = function(pools, expansion) {
 };
 
 global.findExpansions = function(pools) {
-	var expansions = [];
-	pools.get("global").items().each(function(i) {
-		var t = i.is("tile");
+	let expansions = [];
+	let arr = pools.get("global").items()
+	for (const i in arr) {
+		let t = arr[i].is("tile");
 		if (t !== undefined) {
-			var expansion = t.split(/\_/g)[0];
+			let expansion = t.split(/\_/g)[0];
 			if (!Utils.contains(expansions, expansion)) {
 				expansions.push(expansion);
 			}
 		}
-	});
+	}
+	// pools.get("global").items().each(function(i) {
+	// 	var t = i.is("tile");
+	// 	if (t !== undefined) {
+	// 		var expansion = t.split(/\_/g)[0];
+	// 		if (!Utils.contains(expansions, expansion)) {
+	// 			expansions.push(expansion);
+	// 		}
+	// 	}
+	// });
 	return expansions;
 };
 
@@ -438,36 +448,57 @@ global.setupStartingTile = function(pools, grids) {
 };
 
 global.currentTile = function(here) {
-	var foundTile = null;
-	here.items().each(function(i) {
+	let foundTile = null;
+	let arr = here.items();
+	for (const i in arr) {
 		if (foundTile !== null) {
-			return;
+			return foundTile;
 		}
-		if (i.is("tile") !== undefined) {
-			foundTile = i;
+		if (arr[i].is("tile") !== undefined) {
+			foundTile = arr[i];
 		}
-	});
+	}
+	// here.items().each(function(i) {
+	// 	if (foundTile !== null) {
+	// 		return;
+	// 	}
+	// 	if (i.is("tile") !== undefined) {
+	// 		foundTile = i;
+	// 	}
+	// });
 	return foundTile;
 };
 
 global.drawTile = function(pools, here) {
-	var foundTile = global.currentTile(here);
+	let foundTile = global.currentTile(here);
 	if (foundTile !== null) {
 		return null;
 	}
-	var allTiles = [];
-	var riverTiles = [];
-	pools.get("global").items().each(function(i) {
-		var t = i.is("tile");
+	let allTiles = [];
+	let riverTiles = [];
+	let arr = pools.get("global").items();
+	for (const i in arr) {
+		let t = arr[i].is("tile");
 		if (t !== undefined) {
-			var expansion = t.split(/\_/g)[0];
+			let expansion = t.split(/\_/g)[0];
 			if (expansion === "river") {
-				riverTiles.push(i);
+				riverTiles.push(arr[i]);
 			} else {
-				allTiles.push(i);
+				allTiles.push(arr[i]);
 			}
 		}
-	});
+	}
+	// pools.get("global").items().each(function(i) {
+	// 	var t = i.is("tile");
+	// 	if (t !== undefined) {
+	// 		var expansion = t.split(/\_/g)[0];
+	// 		if (expansion === "river") {
+	// 			riverTiles.push(i);
+	// 		} else {
+	// 			allTiles.push(i);
+	// 		}
+	// 	}
+	// });
 	if (riverTiles.length > 0) {
 		allTiles = riverTiles;
 	}
@@ -522,11 +553,17 @@ global.createPlayers = function(pools, tracks, count) {
 };
 
 global.destroySetup = function(here) {
-	here.items().each(function(i) {
-		if (i.kind.startsWith("setup_")) {
-			here.destroy(i.kind);
+	const arr = here.items()
+	for (const i in arr) {
+		if (arr[i].kind.startsWith("setup_")) {
+			here.destroy(arr[i].kind);
 		}
-	});
+	}
+	// here.items().each(function(i) {
+	// 	if (i.kind.startsWith("setup_")) {
+	// 		here.destroy(i.kind);
+	// 	}
+	// });
 };
 
 global.incScore = function(here, tracks, count, play, log) {
@@ -555,11 +592,15 @@ global.setTileRotation = function(hover, spot, newAngle) {
 
 	Utils.each([ 0, 90, 180, 270 ], function(a) {
 		Utils.loop(0, 9, 1, function(i) {
-			var from = spot(hover.kind + "-" + a + "-" + i);
-			var to = spot(hover.kind + "-" + newAngle + "-" + i);
-			from.items().each(function(item) {
-				from.move(item.kind, item.count(), to);
-			});
+			let from = spot(hover.kind + "-" + a + "-" + i);
+			let to = spot(hover.kind + "-" + newAngle + "-" + i);
+			let arr = from.items()
+			for (const item in arr) {
+				from.move(arr[item].kind, arr[item].count(), to);
+			}
+			// from.items().each(function(item) {
+			// 	from.move(item.kind, item.count(), to);
+			// });
 		});
 	});
 };
@@ -640,12 +681,18 @@ global.checkValid = function(here, hover, grids) {
 	}
 
 	var check = function(cell, tilePos, cellPos) {
-		var t = null;
-		cell.items().each(function(i) {
-			if (i.is("tile") !== undefined) {
-				t = i;
+		let t = null;
+		let arr = cell.items();
+		for (const i in arr) {
+			if (arr[i].is("tile") !== undefined) {
+				t = arr[i];
 			}
-		});
+		}
+		// cell.items().each(function(i) {
+		// 	if (i.is("tile") !== undefined) {
+		// 		t = i;
+		// 	}
+		// });
 		if (t !== null) {
 			var d = def(t);
 			if (d === undefined) {

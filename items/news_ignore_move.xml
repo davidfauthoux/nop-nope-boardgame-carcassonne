@@ -1,0 +1,11 @@
+<item>
+    <kind>news_ignore_move</kind>
+    <trigger>news:move</trigger>
+    <script>
+        <![CDATA[
+			if (_.title === undefined) {
+				//delete _.location;
+			}
+		]]>
+    </script>
+</item>

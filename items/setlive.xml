@@ -1,0 +1,16 @@
+<item>
+    <content>
+        <span>setlive</span>
+    </content>
+    <trigger>drop:live</trigger>
+    <script>
+        <![CDATA[
+			here.destroy("video", 1);
+			here.destroy("audio", 1);
+			if (hover.live()) {
+				here.drop("video", 1);
+				here.drop("audio", 1);
+			}
+		]]>
+    </script>
+</item>

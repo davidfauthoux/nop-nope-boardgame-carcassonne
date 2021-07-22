@@ -1,0 +1,11 @@
+<item>
+    <kind>watchdog_live</kind>
+    <trigger>watchdog:live</trigger>
+    <script>
+        <![CDATA[
+			if (here.location !== from.location) {
+				throw "live";
+			}
+		]]>
+    </script>
+</item>

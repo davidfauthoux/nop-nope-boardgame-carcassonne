@@ -1,0 +1,13 @@
+<item>
+    <kind>setup_tiles_river</kind>
+    <content>
+        <span class="cc-setup">Add River expansion</span>
+    </content>
+    <trigger>drop:setup_tiles_river</trigger>
+    <script>
+        <![CDATA[
+			here.destroy(hover.kind);
+			global.setupTiles(pools, "river");
+		]]>
+    </script>
+</item>

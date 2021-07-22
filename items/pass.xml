@@ -1,0 +1,103 @@
+<item>
+    <kind>pass</kind>
+    <content>
+        <span>Pass</span>
+    </content>
+    <trigger>drop:pass</trigger>
+    <script>
+        <![CDATA[
+			if (here.location === from.location) {
+				if (!here.live()) {
+					log("You must activate this player by clicking on the face");
+					return;
+				}
+				var newTile = global.drawTile(pools, here);
+				if (newTile === null) {
+					log("You must play your tile");
+					return;
+				}
+				if (newTile !== undefined) {
+					global.privateFaceUpTile(newTile, spot, nop);
+				}
+
+				var firstBank = null;
+				var firstBankPlayer = null;
+				var foundBank = null;
+				var foundBankPlayer = null;
+				var nextBank = null;
+				var nextBankPlayer = null;
+				pools.each(function(p) {
+					var bankPlayer = p.is("pool-bank");
+					var bankPin = p.find("bank-pin-player" + bankPlayer);
+					if (!bankPin.exists()) {
+						return;
+					}
+
+					if (firstBank === null) {
+						console.log("FIRST BANK: " + p.location);
+						firstBank = p;
+						firstBankPlayer = bankPlayer;
+					}
+					if ((foundBank !== null) && (nextBank === null)) {
+						console.log("NEXT BANK: " + p.location);
+						nextBank = p;
+						nextBankPlayer = bankPlayer;
+					}
+					if (p.location === here.location) {
+						console.log("FOUND BANK: " + p.location);
+						foundBank = p;
+						foundBankPlayer = bankPlayer;
+					}
+				});
+				if ((foundBank !== null) && (nextBank === null)) {
+					nextBank = firstBank;
+					nextBankPlayer = firstBankPlayer;
+				}
+				if (nextBank !== null) {
+//					foundBank.move("playing", 1, nextBank);
+					foundBank.destroy("pass-player" + foundBankPlayer, 1);
+					nextBank.drop("pass-player" + nextBankPlayer, 1);
+					nextBank.items().each(function(i) {
+						if (i.is("tile") && (i.look("face") === undefined)) {
+							global.faceUpTile(i, spot);
+						}
+					});
+				}
+
+				play("long");
+			} else {
+				var droppedPlayer = here.is("pool-bank");
+				if (droppedPlayer !== undefined) {
+					var allPlayers = [];
+					pools.each(function(p) {
+						var bankPlayer = p.is("pool-bank");
+						if (bankPlayer !== undefined) {
+							allPlayers.push(bankPlayer);
+						}
+					});
+					pools.each(function(p) {
+						var bankPlayer = p.is("pool-bank");
+						if (bankPlayer !== undefined) {
+							each(allPlayers, function(player) {
+								p.destroy("pass-player" + player, 1);
+							});
+							p.items().each(function(i) {
+								if (i.is("tile")) {
+									global.faceDownTile(i, spot);
+								}
+							});
+							if (droppedPlayer === bankPlayer) {
+								p.drop("pass-player" + bankPlayer, 1);
+							}
+						}
+					});
+				}
+			}
+
+			mark();
+		]]>
+    </script>
+    <modifier>
+        <key>border</key>
+    </modifier>
+</item>

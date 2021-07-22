@@ -1,0 +1,16 @@
+<item>
+    <kind>setup_</kind>
+    <content>
+        <span class="cc-setup">OK!</span>
+    </content>
+    <trigger>drop:setup_</trigger>
+    <script>
+        <![CDATA[
+			global.destroySetup(here);
+
+			here.drop("setup_2_players", 1);
+			here.drop("setup_3_players", 1);
+			here.drop("setup_4_players", 1);
+		]]>
+    </script>
+</item>
